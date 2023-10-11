@@ -1,18 +1,21 @@
+import { Role } from "@roles/entities/Role";
 import { Router } from "express";
-import { v4 as uuidv4 } from 'uuid'
 
 const rolesRouter = Router()
 
-const roles = []
+const roles: Role[] = []
 
 rolesRouter.post('/', (request, response) => {
   const { name } = request.body
 
-  const role = {
-    id: uuidv4(),
+  // uma instacia da classe Role() e ja tem um id atribuido, pois o construtor foi executado
+  const role = new Role()
+
+  // para juntar os dois objetos, fazer um merge entre role e o objeto do segundo parametro
+  Object.assign(role, {
     name,
     created_at: new Date()
-  }
+  })
 
   roles.push(role)
 
