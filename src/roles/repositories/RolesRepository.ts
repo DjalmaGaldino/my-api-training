@@ -11,7 +11,7 @@ export class RolesRepository {
     this.roles = []
   }
 
-  create({ name }: CreateRoleDTO) {
+  create({ name }: CreateRoleDTO): Role {
   // uma instacia da classe Role() e ja tem um id atribuido, pois o construtor foi executado
   const role = new Role()
 
@@ -23,5 +23,10 @@ export class RolesRepository {
 
   this.roles.push(role)
   return role
+  }
+
+  // listando todos os dados
+  findAll(): Role[] {
+    return this.roles
   }
 }
