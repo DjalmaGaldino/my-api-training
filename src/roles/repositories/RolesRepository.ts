@@ -6,9 +6,20 @@ type CreateRoleDTO = {
 
 export class RolesRepository {
   private roles: Role[]
+  private static INSTANCE: RolesRepository
 
-  constructor() {
+  // com esse private não será possível mais nenhum lugar fazer um new (instanciar a classe)
+  private constructor() {
     this.roles = []
+  }
+
+  // criando um método para garantir que a instancia seja unica
+  public static getInstance(): RolesRepository {
+    if (!RolesRepository.INSTANCE) {
+      RolesRepository.INSTANCE = new RolesRepository()
+    }
+
+    return RolesRepository.INSTANCE
   }
 
   create({ name }: CreateRoleDTO): Role {
