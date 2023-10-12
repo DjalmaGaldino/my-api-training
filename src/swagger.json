@@ -1,0 +1,12 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "MyApi Documentation",
+    "description": "MyApi Documentation with all especifications",
+    "version": "1.0.0",
+    "contact": {
+      "name": "Djalma Albuquerque",
+      "email": "email@gmail.com"
+    }
+  }
+}
