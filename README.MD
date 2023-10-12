@@ -9,3 +9,11 @@
     ## OpenAPI Specification:
 
     https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.3.md
+
+    ## TypeOrm:
+
+    https://typeorm.io/
+
+    ## SqLite
+
+    https://www.sqlite.org/index.html
