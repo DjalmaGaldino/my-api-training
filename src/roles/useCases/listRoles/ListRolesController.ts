@@ -5,8 +5,16 @@ export class ListRolesController {
   // metodo consstrutor para receber por parametro a instancia do usecase, que é o que manipulo dentro do controller
   constructor(private listRolesUseCase: ListRolesUseCase) {}
 
-  handle(request: Request, response: Response): Response {
-    const roles = this.listRolesUseCase.execute()
+  async handle(request: Request, response: Response): Promise<Response> {
+    const page = request.query.page && Number(request.query.page) > 0
+      ? Number(request.query.page)
+      : 1
+
+    const limit =
+      request.query.limit && Number(request.query.limit) > 0
+       ? Number(request.query.limit) : 15
+
+    const roles = await this.listRolesUseCase.execute({ page, limit })
 
     return response.json(roles)
   }
