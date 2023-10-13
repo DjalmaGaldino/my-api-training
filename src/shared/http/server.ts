@@ -10,7 +10,6 @@ dataSource.initialize().then(() => {
   })
 })
 
-
 /*
   todo o contexto do express foi migrado para um arquivo chamado app.ts, deixando aqui no server apenas a inicialização do servidor e a inicialização do banco de dados sqlite
 */
