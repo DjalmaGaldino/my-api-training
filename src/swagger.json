@@ -162,6 +162,62 @@
                       "type": "string"
                     }
                   }
+                },
+                "example": {
+                  "id": "ad68d963-d87b-4d73-bbf4-fb946dba8234",
+                  "name": "Adiministrator",
+                  "created_at": "2023-10-13T22:01:30.000Z"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request."
+          },
+          "404": {
+            "description": "Role not found."
+          }
+        }
+      },
+      "get": {
+        "tags": ["Roles"],
+        "summary": "Find roles by Id",
+        "description": "Return roles based on ID.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Identifier of a role",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "style": "label"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "created_at": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "id": "ad68d963-d87b-4d73-bbf4-fb946dba8234",
+                  "name": "Adiministrator",
+                  "created_at": "2023-10-13T22:01:30.000Z"
                 }
               }
             }
