@@ -1,6 +1,8 @@
 import { Role } from '@roles/entities/Role'
+import { IRolesRepository } from '@roles/repositories/IRolesRepository'
 import { RolesRepository } from '@roles/repositories/RolesRepository'
 import { AppError } from '@shared/errors/AppError'
+import { inject, injectable } from 'tsyringe'
 
 type UpdateRoleDTO = {
   id: string
@@ -8,8 +10,12 @@ type UpdateRoleDTO = {
 }
 
 // Aqui estou validando as regras de negócio com relação a criação de roles (não pode existir roles com nomes iguais)
+@injectable()
 export class UpdateRoleUseCase {
-  constructor(private rolesRepository: RolesRepository) {}
+  constructor(
+    @inject('RolesRepository')
+    private rolesRepository: IRolesRepository
+    ) {}
 
   async execute({ id, name }: UpdateRoleDTO): Promise<Role> {
     const role = await this.rolesRepository.findById(id)

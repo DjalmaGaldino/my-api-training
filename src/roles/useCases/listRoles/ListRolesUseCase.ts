@@ -1,4 +1,7 @@
-import { RolesPaginateProperties, RolesRepository } from '@roles/repositories/RolesRepository'
+import { IRolesRepository, RolesPaginateProperties } from '@roles/repositories/IRolesRepository'
+import { RolesRepository } from '@roles/repositories/RolesRepository'
+import {  } from '@shared/container'
+import { inject, injectable } from 'tsyringe'
 
 type ListRolesUseCaseParams = {
   page: number
@@ -6,8 +9,12 @@ type ListRolesUseCaseParams = {
 }
 
 // usecase para listagem das roles -> deve se criar o controller
+@injectable()
 export class ListRolesUseCase {
-  constructor(private rolesRepository: RolesRepository) {}
+  constructor(
+    @inject('RolesRepository')
+    private rolesRepository: IRolesRepository
+  ) {}
 
   async execute({  limit, page }: ListRolesUseCaseParams): Promise<RolesPaginateProperties> {
     const take = limit
