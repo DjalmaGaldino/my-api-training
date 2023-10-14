@@ -1,4 +1,3 @@
-import { query } from "express"
 import { MigrationInterface, QueryRunner, TableColumn, TableForeignKey } from "typeorm"
 
 // adicionando uma coluna a uma tabela existente
