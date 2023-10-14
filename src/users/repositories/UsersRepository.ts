@@ -3,7 +3,7 @@ import { CreateUserDTO, IUsersRepository, PaginateParams, UserPaginateProperties
 import { Repository } from "typeorm";
 import { dataSource } from "@shared/typeorm";
 
-export class UserRepositoy implements IUsersRepository {
+export class UsersRepositoy implements IUsersRepository {
   private repository: Repository<User>
 
   constructor() {
