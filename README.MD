@@ -17,3 +17,7 @@
     ## SqLite
 
     https://www.sqlite.org/index.html
+
+    ## Tsyringe
+
+    https://github.com/microsoft/tsyringe
