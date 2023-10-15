@@ -36,3 +36,7 @@
 
     ## Para executar o seed:
     npm run seed:admin
+
+    ## Para upload de imagem MULTER:
+
+    https://github.com/expressjs/multer/blob/master/doc/README-pt-br.md
