@@ -29,3 +29,10 @@
     ## Class-Transformer:
 
     https://github.com/typestack/class-transformer
+
+    ## Para rodar a migração
+
+    npm run typeorm -- -d ./src/shared/typeorm/index.ts migration:run
+
+    ## Para executar o seed:
+    npm run seed:admin
