@@ -9,7 +9,7 @@ export class UpdateAvatarController {
 
     const user = await updateAvatarCase.execute({
       userId: request.user.id,
-      avatarFilename: request.file.filename
+      avatarFilename: request.file.filename,
     })
     return response.json(instanceToInstance(user))
     // este método instance to instace vai usar o exclude da entidade User

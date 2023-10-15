@@ -23,7 +23,7 @@ export const isAuthenticated = (
   try {
     const decodedToken = verify(token, authConfig.jwt.secret as Secret)
     const { sub } = decodedToken as JwtPayloadProps
-    request.user = { id: sub}
+    request.user = { id: sub }
     return next()
   } catch (error) {
     throw new AppError('Invalid authentication token', 401)

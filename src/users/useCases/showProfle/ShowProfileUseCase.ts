@@ -11,7 +11,7 @@ export type ShowProfileParams = {
 export class ShowProfileUseCase {
   constructor(
     @inject('UsersRepository')
-    private usersRepository: IUsersRepository
+    private usersRepository: IUsersRepository,
   ) {}
 
   async execute({ userId }: ShowProfileParams): Promise<User> {

@@ -1,5 +1,5 @@
 import { Response, Request } from 'express'
-import { container, inject, injectable } from 'tsyringe'
+import { container } from 'tsyringe'
 import { CreateRoleUseCase } from './CreateRoleUseCase'
 
 export class CreateRoleController {

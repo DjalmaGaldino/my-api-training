@@ -1,6 +1,6 @@
-import multer, { StorageEngine } from "multer";
-import path from "node:path";
-import crypto from "node:crypto";
+import multer, { StorageEngine } from 'multer'
+import path from 'node:path'
+import crypto from 'node:crypto'
 
 type UploadConfig = {
   directory: string

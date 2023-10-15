@@ -15,12 +15,10 @@ export type UpdateAvatarDTO = {
 export class UpdateAvatarUseCase {
   constructor(
     @inject('UsersRepository')
-    private usersRepository: IUsersRepository
+    private usersRepository: IUsersRepository,
   ) {}
 
-  async execute({
-    avatarFilename, userId
-  }: UpdateAvatarDTO): Promise<User> {
+  async execute({ avatarFilename, userId }: UpdateAvatarDTO): Promise<User> {
     const user = await this.usersRepository.findById(userId)
 
     if (!user) {
