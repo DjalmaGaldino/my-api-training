@@ -1,6 +1,8 @@
-import { IRolesRepository, RolesPaginateProperties } from '@roles/repositories/IRolesRepository'
-import { RolesRepository } from '@roles/repositories/RolesRepository'
-import {  } from '@shared/container'
+import {
+  IRolesRepository,
+  RolesPaginateProperties,
+} from '@roles/repositories/IRolesRepository'
+import {} from '@shared/container'
 import { inject, injectable } from 'tsyringe'
 
 type ListRolesUseCaseParams = {
@@ -13,12 +15,15 @@ type ListRolesUseCaseParams = {
 export class ListRolesUseCase {
   constructor(
     @inject('RolesRepository')
-    private rolesRepository: IRolesRepository
+    private rolesRepository: IRolesRepository,
   ) {}
 
-  async execute({  limit, page }: ListRolesUseCaseParams): Promise<RolesPaginateProperties> {
+  async execute({
+    limit,
+    page,
+  }: ListRolesUseCaseParams): Promise<RolesPaginateProperties> {
     const take = limit
-    const skip = Number((page - 1)) * take
+    const skip = Number(page - 1) * take
     const roles = await this.rolesRepository.findAll({ page, skip, take })
 
     return roles

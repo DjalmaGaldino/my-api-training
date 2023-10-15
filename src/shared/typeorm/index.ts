@@ -8,10 +8,10 @@ import { User } from '@users/entities/User'
 export const dataSource = new DataSource({
   type: 'sqlite',
   database: './db.sqlite',
-  entities: [ Role, User ],
+  entities: [Role, User],
   migrations: [
     CreateRolesTable1697216413192,
     CreateUsersTable1697320339993,
-    AddRoleIdToUsersTable1697320807837
+    AddRoleIdToUsersTable1697320807837,
   ],
 })

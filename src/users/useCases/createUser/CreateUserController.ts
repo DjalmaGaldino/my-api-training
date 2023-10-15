@@ -1,8 +1,7 @@
-import { Request, Response } from "express";
-import { container } from "tsyringe";
-import { CreateUserUseCase } from "./CreateUserUseCase";
-import { instanceToInstance } from "class-transformer";
-
+import { Request, Response } from 'express'
+import { container } from 'tsyringe'
+import { CreateUserUseCase } from './CreateUserUseCase'
+import { instanceToInstance } from 'class-transformer'
 
 export class CreateUserController {
   async handle(request: Request, response: Response): Promise<Response> {
@@ -15,7 +14,7 @@ export class CreateUserController {
       email,
       password,
       isAdmin,
-      roleId
+      roleId,
     })
     return response.status(201).json(instanceToInstance(user))
     // este método instance to instace vai usar o exclude da entidade User

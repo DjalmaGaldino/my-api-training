@@ -14,46 +14,61 @@ const showRolesController = container.resolve(ShowRoleController)
 const updateRolesController = container.resolve(UpdateRoleController)
 const deleteRolesController = container.resolve(DeleteRoleController)
 
+// antes de todas as rotas, irá verificar todas de uma vez so
+// rolesRouter.use(isAuthenticated)
+
 // o celebrate ta validando os tipos dos campos.
-rolesRouter.post('/', celebrate({
-  [Segments.BODY]: Joi.object().keys({
-    name: Joi.string().required()
-  })
-}),
-(request, response) => {
-  return createRolesController.handle(request, response)
-})
-
-rolesRouter.get('/', celebrate({
-  [Segments.QUERY]: Joi.object().keys({
-    page: Joi.number(),
-    limit: Joi.number()
-  })
-}),
-(request, response) => {
-  return listRolesController.handle(request, response)
-})
-
-rolesRouter.get('/:id', celebrate({
-  [Segments.PARAMS]: Joi.object().keys({
-    id: Joi.string().uuid().required()
-  })
-}),
-(request, response) => {
-  return showRolesController.handle(request, response)
-})
-
-rolesRouter.put('/:id', celebrate({
-  [Segments.PARAMS]: Joi.object().keys({
-    id: Joi.string().uuid().required()
+rolesRouter.post(
+  '/',
+  celebrate({
+    [Segments.BODY]: Joi.object().keys({
+      name: Joi.string().required(),
+    }),
   }),
-  [Segments.BODY]: Joi.object().keys({
-    name: Joi.string().required()
-  })
-}),
-(request, response) => {
-  return updateRolesController.handle(request, response)
-})
+  (request, response) => {
+    return createRolesController.handle(request, response)
+  },
+)
+
+rolesRouter.get(
+  '/',
+  celebrate({
+    [Segments.QUERY]: Joi.object().keys({
+      page: Joi.number(),
+      limit: Joi.number(),
+    }),
+  }),
+  (request, response) => {
+    return listRolesController.handle(request, response)
+  },
+)
+
+rolesRouter.get(
+  '/:id',
+  celebrate({
+    [Segments.PARAMS]: Joi.object().keys({
+      id: Joi.string().uuid().required(),
+    }),
+  }),
+  (request, response) => {
+    return showRolesController.handle(request, response)
+  },
+)
+
+rolesRouter.put(
+  '/:id',
+  celebrate({
+    [Segments.PARAMS]: Joi.object().keys({
+      id: Joi.string().uuid().required(),
+    }),
+    [Segments.BODY]: Joi.object().keys({
+      name: Joi.string().required(),
+    }),
+  }),
+  (request, response) => {
+    return updateRolesController.handle(request, response)
+  },
+)
 
 rolesRouter.delete('/:id', (request, response) => {
   return deleteRolesController.handle(request, response)

@@ -1,9 +1,9 @@
-import { IRolesRepository } from '@roles/repositories/IRolesRepository';
-import { AppError } from '@shared/errors/AppError';
-import { IUsersRepository } from '@users/repositories/IUsersRepository';
+import { IRolesRepository } from '@roles/repositories/IRolesRepository'
+import { AppError } from '@shared/errors/AppError'
+import { IUsersRepository } from '@users/repositories/IUsersRepository'
 import { injectable, inject } from 'tsyringe'
 import { hash } from 'bcryptjs'
-import { User } from '@users/entities/User';
+import { User } from '@users/entities/User'
 
 export type CreateUserDTO = {
   name: string
@@ -15,26 +15,30 @@ export type CreateUserDTO = {
 
 @injectable()
 export class CreateUserUseCase {
-
   constructor(
     @inject('UsersRepository')
     private usersRepository: IUsersRepository,
 
     @inject('RolesRepository')
-    private rolesRepository: IRolesRepository
+    private rolesRepository: IRolesRepository,
   ) {}
 
-
-  async execute({ name, email, password, isAdmin, roleId }: CreateUserDTO): Promise<User> {
+  async execute({
+    name,
+    email,
+    password,
+    isAdmin,
+    roleId,
+  }: CreateUserDTO): Promise<User> {
     const emailExists = await this.usersRepository.findByEmail(email)
 
-    if(emailExists) {
+    if (emailExists) {
       throw new AppError('Email address already used')
     }
 
     const role = await this.rolesRepository.findById(roleId)
 
-    if(!role) {
+    if (!role) {
       throw new AppError('Role not found', 404)
     }
 
@@ -44,10 +48,9 @@ export class CreateUserUseCase {
       email,
       password: hashedPassword,
       isAdmin,
-      role
+      role,
     })
 
     return user
   }
-
 }

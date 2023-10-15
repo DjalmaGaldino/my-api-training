@@ -12,8 +12,8 @@ type CreateRoleDTO = {
 export class CreateRoleUseCase {
   constructor(
     @inject('RolesRepository')
-    private rolesRepository: IRolesRepository
-    ) {}
+    private rolesRepository: IRolesRepository,
+  ) {}
 
   async execute({ name }: CreateRoleDTO): Promise<Role> {
     const roleAlereadExists = await this.rolesRepository.findByName(name)

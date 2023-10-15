@@ -13,7 +13,7 @@ type ShowRoleParams = {
 export class ShowRoleUseCase {
   constructor(
     @inject('RolesRepository')
-    private rolesRepository: IRolesRepository
+    private rolesRepository: IRolesRepository,
   ) {}
 
   async execute({ id }: ShowRoleParams): Promise<Role> {

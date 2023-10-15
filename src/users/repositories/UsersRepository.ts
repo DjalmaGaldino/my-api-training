@@ -1,7 +1,12 @@
-import { User } from "@users/entities/User";
-import { CreateUserDTO, IUsersRepository, PaginateParams, UserPaginateProperties } from "./IUsersRepository";
-import { Repository } from "typeorm";
-import { dataSource } from "@shared/typeorm";
+import { User } from '@users/entities/User'
+import {
+  CreateUserDTO,
+  IUsersRepository,
+  PaginateParams,
+  UserPaginateProperties,
+} from './IUsersRepository'
+import { Repository } from 'typeorm'
+import { dataSource } from '@shared/typeorm'
 
 export class UsersRepositoy implements IUsersRepository {
   private repository: Repository<User>
@@ -10,13 +15,19 @@ export class UsersRepositoy implements IUsersRepository {
     this.repository = dataSource.getRepository(User)
   }
 
-  async create({ name, email, password, isAdmin, role }: CreateUserDTO): Promise<User> {
+  async create({
+    name,
+    email,
+    password,
+    isAdmin,
+    role,
+  }: CreateUserDTO): Promise<User> {
     const user = this.repository.create({
       name,
       email,
       password,
       isAdmin,
-      role
+      role,
     })
 
     return this.repository.save(user)
@@ -26,19 +37,23 @@ export class UsersRepositoy implements IUsersRepository {
     return this.repository.save(user)
   }
 
-  async findAll({ page, skip, take }: PaginateParams): Promise<UserPaginateProperties> {
-   const [ users, count ] = await this.repository
-    .createQueryBuilder('r')
-    .leftJoinAndSelect('r.role', 'role')
-    .skip(skip)
-    .take(take)
-    .getManyAndCount()
+  async findAll({
+    page,
+    skip,
+    take,
+  }: PaginateParams): Promise<UserPaginateProperties> {
+    const [users, count] = await this.repository
+      .createQueryBuilder('r')
+      .leftJoinAndSelect('r.role', 'role')
+      .skip(skip)
+      .take(take)
+      .getManyAndCount()
 
     const result = {
       per_page: take,
       total: count,
       current_page: page,
-      data: users
+      data: users,
     }
 
     return result
@@ -59,5 +74,4 @@ export class UsersRepositoy implements IUsersRepository {
   async delete(user: User): Promise<void> {
     await this.repository.remove(user)
   }
-
 }

@@ -14,8 +14,8 @@ type UpdateRoleDTO = {
 export class UpdateRoleUseCase {
   constructor(
     @inject('RolesRepository')
-    private rolesRepository: IRolesRepository
-    ) {}
+    private rolesRepository: IRolesRepository,
+  ) {}
 
   async execute({ id, name }: UpdateRoleDTO): Promise<Role> {
     const role = await this.rolesRepository.findById(id)

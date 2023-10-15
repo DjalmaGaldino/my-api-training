@@ -1,6 +1,9 @@
 import { inject, injectable } from 'tsyringe'
-import {  } from '@shared/container'
-import { IUsersRepository, UserPaginateProperties } from '@users/repositories/IUsersRepository'
+import {} from '@shared/container'
+import {
+  IUsersRepository,
+  UserPaginateProperties,
+} from '@users/repositories/IUsersRepository'
 
 type ListUsersUseCaseParams = {
   page: number
@@ -12,12 +15,15 @@ type ListUsersUseCaseParams = {
 export class ListUsersUseCase {
   constructor(
     @inject('UsersRepository')
-    private usersRepository: IUsersRepository
+    private usersRepository: IUsersRepository,
   ) {}
 
-  async execute({  limit, page }: ListUsersUseCaseParams): Promise<UserPaginateProperties> {
+  async execute({
+    limit,
+    page,
+  }: ListUsersUseCaseParams): Promise<UserPaginateProperties> {
     const take = limit
-    const skip = Number((page - 1)) * take
+    const skip = Number(page - 1) * take
     const roles = await this.usersRepository.findAll({ page, skip, take })
 
     return roles

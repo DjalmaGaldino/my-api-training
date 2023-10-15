@@ -1,10 +1,10 @@
-import { inject, injectable } from "tsyringe"
-import { compare } from "bcryptjs"
+import { inject, injectable } from 'tsyringe'
+import { compare } from 'bcryptjs'
 import jwtConfig from '@config/auth'
-import { AppError } from "@shared/errors/AppError"
-import { User } from "@users/entities/User"
-import { IUsersRepository } from "@users/repositories/IUsersRepository"
-import { sign } from "jsonwebtoken"
+import { AppError } from '@shared/errors/AppError'
+import { User } from '@users/entities/User'
+import { IUsersRepository } from '@users/repositories/IUsersRepository'
+import { sign } from 'jsonwebtoken'
 
 export type CreateLoginDTO = {
   email: string
@@ -18,35 +18,32 @@ export type IResponse = {
 
 @injectable()
 export class CreateLoginUseCase {
-
   constructor(
     @inject('UsersRepository')
-    private usersRepository: IUsersRepository
+    private usersRepository: IUsersRepository,
   ) {}
-
 
   async execute({ email, password }: CreateLoginDTO): Promise<IResponse> {
     const user = await this.usersRepository.findByEmail(email)
 
-    if(!user) {
+    if (!user) {
       throw new AppError('Incorrect email/password combination', 401)
     }
 
     const passwordConfirmed = await compare(password, user.password)
 
-    if(!passwordConfirmed) {
+    if (!passwordConfirmed) {
       throw new AppError('Incorrect email/password combination', 401)
     }
 
     const token = sign({}, jwtConfig.jwt.secret, {
       subject: user.id,
-      expiresIn: jwtConfig.jwt.expiresIn
+      expiresIn: jwtConfig.jwt.expiresIn,
     })
 
     return {
       user,
-      token
+      token,
     }
   }
-
 }
