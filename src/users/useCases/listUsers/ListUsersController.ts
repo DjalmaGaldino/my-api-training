@@ -1,6 +1,7 @@
 import { Request, Response } from 'express'
 import { container } from 'tsyringe'
 import { ListUsersUseCase } from './ListUsersUseCase'
+import { instanceToInstance } from 'class-transformer'
 
 export class ListUsersController {
   // metodo consstrutor para receber por parametro a instancia do usecase, que é o que manipulo dentro do controller
@@ -19,7 +20,7 @@ export class ListUsersController {
 
     const users = await listUsersUseCase.execute({ page, limit })
 
-    return response.json(users)
+    return response.json(instanceToInstance(users))
   }
 }
 

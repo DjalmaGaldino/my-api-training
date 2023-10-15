@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { container } from "tsyringe";
 import { CreateUserUseCase } from "./CreateUserUseCase";
+import { instanceToInstance } from "class-transformer";
 
 
 export class CreateUserController {
@@ -16,6 +17,7 @@ export class CreateUserController {
       isAdmin,
       roleId
     })
-    return response.status(201).json(user)
+    return response.status(201).json(instanceToInstance(user))
+    // este método instance to instace vai usar o exclude da entidade User
   }
 }

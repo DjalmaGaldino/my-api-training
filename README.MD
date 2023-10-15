@@ -14,10 +14,18 @@
 
     https://typeorm.io/
 
-    ## SqLite
+    ## SqLite:
 
     https://www.sqlite.org/index.html
 
-    ## Tsyringe
+    ## Tsyringe:
 
     https://github.com/microsoft/tsyringe
+
+    ## BecryptJs:
+
+    https://www.npmjs.com/package/bcryptjs
+
+    ## Class-Transformer:
+
+    https://github.com/typestack/class-transformer
