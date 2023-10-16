@@ -12,7 +12,10 @@ import { container } from 'tsyringe'
 
 container.registerSingleton<IUsersRepository>('UsersRepository', UsersRepositoy)
 
-container.registerSingleton<IRefreshTokenRepository>('RefreshTokenRepository', RefreshTokenRepository)
+container.registerSingleton<IRefreshTokenRepository>(
+  'RefreshTokenRepository',
+  RefreshTokenRepository,
+)
 
 container.registerSingleton('CreateUserController', CreateUserController)
 container.registerSingleton('ListUsersController', ListUsersController)

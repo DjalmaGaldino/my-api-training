@@ -15,6 +15,6 @@ export const dataSource = new DataSource({
     CreateRolesTable1697216413192,
     CreateUsersTable1697320339993,
     AddRoleIdToUsersTable1697320807837,
-    CreateRefreshTokensTable1697495219730
+    CreateRefreshTokensTable1697495219730,
   ],
 })

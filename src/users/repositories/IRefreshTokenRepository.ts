@@ -1,4 +1,4 @@
-import { RefreshToken } from "@users/entities/RefreshToken"
+import { RefreshToken } from '@users/entities/RefreshToken'
 
 export type CreteRefreshTokenDTO = {
   user_id: string
@@ -8,7 +8,12 @@ export type CreteRefreshTokenDTO = {
 }
 
 export interface IRefreshTokenRepository {
-  create({ user_id, token, expires, valid}: CreteRefreshTokenDTO): Promise<RefreshToken>
+  create({
+    user_id,
+    token,
+    expires,
+    valid,
+  }: CreteRefreshTokenDTO): Promise<RefreshToken>
   findByToken(token: string): Promise<RefreshToken | null>
   invalidate(refresh_token: RefreshToken): Promise<void>
 }

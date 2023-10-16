@@ -1,8 +1,11 @@
-import { RefreshToken } from "@users/entities/RefreshToken";
-import { CreteRefreshTokenDTO, IRefreshTokenRepository } from "./IRefreshTokenRepository";
-import { Repository } from "typeorm";
-import { dataSource } from "@shared/typeorm";
-import { AppError } from "@shared/errors/AppError";
+import { RefreshToken } from '@users/entities/RefreshToken'
+import {
+  CreteRefreshTokenDTO,
+  IRefreshTokenRepository,
+} from './IRefreshTokenRepository'
+import { Repository } from 'typeorm'
+import { dataSource } from '@shared/typeorm'
+import { AppError } from '@shared/errors/AppError'
 
 export class RefreshTokenRepository implements IRefreshTokenRepository {
   private repository: Repository<RefreshToken>
@@ -11,12 +14,17 @@ export class RefreshTokenRepository implements IRefreshTokenRepository {
     this.repository = dataSource.getRepository(RefreshToken)
   }
 
-  async create({ user_id, token, expires, valid }: CreteRefreshTokenDTO): Promise<RefreshToken> {
+  async create({
+    user_id,
+    token,
+    expires,
+    valid,
+  }: CreteRefreshTokenDTO): Promise<RefreshToken> {
     const refreshToken = this.repository.create({
       user_id,
       token,
       expires,
-      valid
+      valid,
     })
     return this.repository.save(refreshToken)
   }
@@ -34,5 +42,4 @@ export class RefreshTokenRepository implements IRefreshTokenRepository {
     refreshToken.valid = false
     await this.repository.save(refreshToken)
   }
-
 }

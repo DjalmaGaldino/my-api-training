@@ -1,7 +1,5 @@
-import { AppError } from '@shared/errors/AppError'
 import { NextFunction, Request, Response } from 'express'
-import { Secret, decode, verify } from 'jsonwebtoken'
-import authConfig from '@config/auth'
+import { decode,} from 'jsonwebtoken'
 
 type JwtPayloadProps = {
   sub: string
@@ -18,7 +16,7 @@ export const addUserInfoToRequest = (
     return response.status(401).json({
       error: true,
       code: 'token.invalid',
-      message: 'Access token not present'
+      message: 'Access token not present',
     })
   }
 
@@ -28,7 +26,7 @@ export const addUserInfoToRequest = (
     return response.status(401).json({
       error: true,
       code: 'token.invalid',
-      message: 'Access token not present'
+      message: 'Access token not present',
     })
   }
 
@@ -38,12 +36,11 @@ export const addUserInfoToRequest = (
     request.user = { id: sub }
 
     return next()
-
   } catch (error) {
     return response.status(401).json({
       error: true,
       code: 'token.invalid',
-      message: 'Access token not present'
+      message: 'Access token not present',
     })
   }
 }
