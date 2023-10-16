@@ -30,6 +30,10 @@
 
     https://github.com/typestack/class-transformer
 
+    ## Para criar uma migration(tabela):
+
+     npm run typeorm migration:create src/shared/typeorm/migrations/NOME_DA_TABELA
+
     ## Para rodar a migração
 
     npm run typeorm -- -d ./src/shared/typeorm/index.ts migration:run
