@@ -1,6 +1,6 @@
 import { RefreshToken } from "@users/entities/RefreshToken"
 
-type CreteRefreshTokenDTO = {
+export type CreteRefreshTokenDTO = {
   user_id: string
   token: string
   expires: Date
